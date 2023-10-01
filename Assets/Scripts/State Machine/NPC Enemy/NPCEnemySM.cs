@@ -8,7 +8,7 @@ public class NPCEnemySM : StateMachine {
     [HideInInspector]
     public Fallen fallenState;
 
-    public List<GameObject> target;
+    public List<GameObject> targets;
     public GameObject nearTarget;
 
     public Rigidbody rigidBody;
@@ -23,14 +23,14 @@ public class NPCEnemySM : StateMachine {
     }
 
     protected override BaseState GetInitialState() {
-        target.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
+        targets.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         tf = GetComponent<Transform>();
         return chasingState;
     }
     /*
     private void Update() {
-        target.clear();
-        target = new List<GameObject>();
-        target.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
+        targets.clear();
+        targets = new List<GameObject>();
+        targets.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
     }*/
 }

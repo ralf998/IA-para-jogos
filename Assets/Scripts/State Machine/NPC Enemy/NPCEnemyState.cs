@@ -21,7 +21,7 @@ public class NPCEnemy : BaseState {
 
     public void FindClosestTarget() {
         float distance = Mathf.Infinity;
-        foreach (GameObject go in sm.enemies) {
+        foreach (GameObject go in sm.targets) {
             Vector3 diff = go.transform.position - sm.tf.position;
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance)

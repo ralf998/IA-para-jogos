@@ -13,7 +13,7 @@ public class Chasing : NPCEnemy {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        base.FindClosestEnemy();
+        base.FindClosestTarget();
     }
 
     public override void UpdatePhysics() {
