@@ -2,25 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
-{
+public class StateMachine : MonoBehaviour {
     public BaseState currentState;
 
-    void Start()
-    {
+    void Start() {
         currentState = GetInitialState();
         if (currentState != null)
             currentState.Enter();
     }
 
-    void Update()
-    {
+    void Update() {
         if (currentState != null)
             currentState.UpdateLogic();
     }
 
-    void LateUpdate()
-    {
+    void LateUpdate() {
         if (currentState != null)
             currentState.UpdatePhysics();
     }

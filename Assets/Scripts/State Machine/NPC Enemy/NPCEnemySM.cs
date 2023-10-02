@@ -7,6 +7,8 @@ public class NPCEnemySM : StateMachine {
     public Chasing chasingState;
     [HideInInspector]
     public Fallen fallenState;
+    [HideInInspector]
+    public Stun stunState;
 
     public List<GameObject> targets;
     public GameObject nearTarget;
@@ -20,12 +22,26 @@ public class NPCEnemySM : StateMachine {
     private void Awake() {
         chasingState = new Chasing(this);
         fallenState = new Fallen(this);
+        stunState = new Stun(this);
     }
 
     protected override BaseState GetInitialState() {
         targets.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         tf = GetComponent<Transform>();
+        chasingState.FindCurrentTarget();
         return chasingState;
+    }
+
+    void OnCollisionEnter2D(Collision2D collisionInfo)
+    {
+        if (collisionInfo.gameObject.tag == "Ally") {
+            life-=5;
+            ChangeState(stunState);
+        }
+    }
+
+    public void LeaveStun() {
+        fallenState.UpdateLogic();
     }
     /*
     private void Update() {
@@ -33,6 +49,7 @@ public class NPCEnemySM : StateMachine {
         targets = new List<GameObject>();
         targets.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
     }*/
+
     public void Teste() {
         Debug.Log("Fodace");
     }

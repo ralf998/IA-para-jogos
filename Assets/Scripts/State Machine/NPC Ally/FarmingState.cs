@@ -13,7 +13,7 @@ public class Farming : NPCAlly {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        base.FindClosestEnemy();
+        base.FindCurrentEnemy();
     }
 
     public override void UpdatePhysics() {

@@ -10,13 +10,10 @@ public abstract class Interactable : MonoBehaviour
         
     }
 
-    public void BaseInteract()
+    public void BaseInteract(GameObject npc)
     {
-        Interact();
+        Interact(npc);
     }
 
-    protected virtual void Interact()
-    {
-
-    }
+    protected virtual void Interact(GameObject npc) {}
 }

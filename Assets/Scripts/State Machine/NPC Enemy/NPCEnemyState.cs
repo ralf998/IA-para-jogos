@@ -16,18 +16,24 @@ public class NPCEnemy : BaseState {
         base.UpdateLogic();
         if (sm.life <= 0) {
             stateMachine.ChangeState(sm.fallenState);
-        }// else if (sm.life <= 30) {stateMachine.ChangeState(sm.HurtState)}
+        }
     }
 
-    public void FindClosestTarget() {
+    public void FindCurrentTarget() {
         float distance = Mathf.Infinity;
-        foreach (GameObject go in sm.targets) {
-            Vector3 diff = go.transform.position - sm.tf.position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                sm.nearTarget = go;
-                distance = curDistance;
+        float tarLife = 100;
+        foreach (GameObject target in sm.targets) {
+            float tarDistance = (target.transform.position - sm.tf.position).sqrMagnitude;
+            if (target.GetComponent<NPCAllySM>().life < 20) {
+                if (tarDistance < distance) {
+                    sm.nearTarget = target;
+                    distance = tarDistance;
+                    tarLife = target.GetComponent<NPCAllySM>().life;
+                }
+            } else if (tarLife > 20) {
+                sm.nearTarget = target;
+                distance = tarDistance;
+                tarLife = target.GetComponent<NPCAllySM>().life;
             }
         }
     }

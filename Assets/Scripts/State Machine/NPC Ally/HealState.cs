@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chasing : NPCEnemy {
-    public Chasing(NPCEnemySM stateMachine) : base("Chasing", stateMachine) {
-        sm = (NPCEnemySM)stateMachine;
+public class Heal : NPCAlly {
+    public Heal(NPCAllySM stateMachine) : base("Heal", stateMachine) {
+        sm = (NPCAllySM)stateMachine;
     }
 
     public override void Enter() {
         base.Enter();
+
+        FindNearHeal();
     }
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        base.FindCurrentTarget();
+
+        FindNearHeal();
     }
 
     public override void UpdatePhysics() {
         base.UpdatePhysics();
         
-        sm.rigidBody.velocity = sm.speed * (sm.nearTarget.transform.position - sm.tf.position).normalized;
+        sm.rigidBody.velocity = sm.speed * (sm.nearHeal.transform.position - sm.tf.position).normalized;
     }
 }

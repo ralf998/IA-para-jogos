@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NPCInteract : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other) {
-            if(other.GetComponent<Interactable>() != null)
+    void OnCollisionEnter2D(Collision2D other) {
+            if(other.gameObject.GetComponent<Interactable>() != null)
             {
-                other.GetComponent<Interactable>().BaseInteract();
+                other.gameObject.GetComponent<Interactable>().BaseInteract(this.gameObject);
             }
         }
 }

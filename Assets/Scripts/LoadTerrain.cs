@@ -35,7 +35,12 @@ public class LoadTerrain : MonoBehaviour
         {
             gridTile = hitInfo.collider.gameObject;
             CheckPosition(hitInfo.collider.gameObject);
+            foreach (Transform test in GetComponent<Collider>().gameObject.transform) {
+                hitInfo.collider.gameObject.GetComponent<NPCEnemySM>().Teste();
+            }
         } 
+
+        
         //Transform playerPos = player;
         //player.parent = gridTile.transform;
         //player.localPosition = Vector3.zero;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class HealthPack : Interactable
+public class HealthPack : Interactable
 {
     // Start is called before the first frame update
     void Start()
@@ -10,13 +10,9 @@ public abstract class HealthPack : Interactable
         
     }
 
-    public void BaseInteract()
+    protected override void Interact(GameObject npc)
     {
-        Interact();
-    }
-
-    protected override void Interact()
-    {
-        
+        npc.GetComponent<NPCAllySM>().life += 30;
+        Destroy(this.gameObject);
     }
 }
