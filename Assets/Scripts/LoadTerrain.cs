@@ -50,19 +50,19 @@ public class LoadTerrain : MonoBehaviour
         
         Vector2 direction = Vector2.zero;
 
-        if(centerDistX >= 0.7)
+        if(centerDistX >= terrainSize - terrainSize/2 - terrainSize/8)
         {
             direction.x = 1;
         }
-        if(centerDistX <= -0.7)
+        if(centerDistX <= -terrainSize - terrainSize/2 - terrainSize/8)
         {
             direction.x = -1;
         }
-        if(centerDistY >= 0.7)
+        if(centerDistY >= terrainSize - terrainSize/2 - terrainSize/8)
         {
             direction.y = 1;
         }
-        if(centerDistY <= -0.7)
+        if(centerDistY <= -terrainSize - terrainSize/2 - terrainSize/8)
         {
             direction.y = -1;
         }
