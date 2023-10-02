@@ -11,7 +11,7 @@ public class NPCEnemySM : StateMachine {
     public List<GameObject> targets;
     public GameObject nearTarget;
 
-    public Rigidbody rigidBody;
+    public Rigidbody2D rigidBody;
     public Transform tf;
     public float speed = 0.5f;
     public float life = 20;
@@ -33,4 +33,7 @@ public class NPCEnemySM : StateMachine {
         targets = new List<GameObject>();
         targets.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
     }*/
+    public void Teste() {
+        Debug.Log("Fodace");
+    }
 }

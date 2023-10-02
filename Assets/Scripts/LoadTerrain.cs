@@ -69,7 +69,7 @@ public class LoadTerrain : MonoBehaviour
 
         if(direction != Vector2.zero)
         {
-            //Debug.Log("o direction é " + direction);
+            Debug.Log("o direction é " + direction);
             LoadTiles(currentTile, direction);
         }
     }
@@ -117,7 +117,9 @@ public class LoadTerrain : MonoBehaviour
             Collider[] hitColliders = Physics.OverlapSphere(new Vector3(currentTilePosX + direction.x * terrainSize, currentTilePosY + direction.y * terrainSize, 0), 0.5f, mask);
             foreach(Collider collider in hitColliders)
                 {
-                    Debug.Log("Pedro formiga é gay 2");
+                    foreach (Transform test in collider.gameObject.transform) {
+                        test.gameObject.GetComponent<NPCEnemySM>().Teste();
+                    }
                 }
         }
     }

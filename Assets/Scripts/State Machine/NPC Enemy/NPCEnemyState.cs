@@ -16,7 +16,7 @@ public class NPCEnemy : BaseState {
         base.UpdateLogic();
         if (sm.life <= 0) {
             stateMachine.ChangeState(sm.fallenState);
-        }
+        }// else if (sm.life <= 30) {stateMachine.ChangeState(sm.HurtState)}
     }
 
     public void FindClosestTarget() {
