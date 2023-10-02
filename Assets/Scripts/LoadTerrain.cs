@@ -69,7 +69,6 @@ public class LoadTerrain : MonoBehaviour
 
         if(direction != Vector2.zero)
         {
-            Debug.Log("o direction é " + direction);
             LoadTiles(currentTile, direction);
         }
     }
@@ -88,7 +87,9 @@ public class LoadTerrain : MonoBehaviour
             Collider[] hitColliders = Physics.OverlapSphere(new Vector3(currentTilePosX + direction.x * terrainSize, currentTilePosY + direction.y * terrainSize, 0), 0.5f, mask);
             foreach(Collider collider in hitColliders)
                 {
-                    Debug.Log("Pedro formiga é gay");
+                    foreach (Transform test in collider.gameObject.transform) {
+                        test.gameObject.GetComponent<NPCEnemySM>().Teste();
+                    }
                 }
 
             //check the collider hitbox;
@@ -97,7 +98,9 @@ public class LoadTerrain : MonoBehaviour
             Collider[] hitColliders2 = Physics.OverlapSphere(new Vector3(currentTilePosX + direction.x * terrainSize, currentTilePosY, 0), 0.5f, mask);
             foreach(Collider collider in hitColliders)
                 {
-                    Debug.Log("Gui Flowers é gay");
+                    foreach (Transform test in collider.gameObject.transform) {
+                        test.gameObject.GetComponent<NPCEnemySM>().Teste();
+                    }
                 }
 
             //check the collider hitbox;
@@ -106,7 +109,9 @@ public class LoadTerrain : MonoBehaviour
             Collider[] hitColliders3 = Physics.OverlapSphere(new Vector3(currentTilePosX, currentTilePosY + direction.y * terrainSize, 0), 0.5f, mask);
             foreach(Collider collider in hitColliders)
                 {
-                    Debug.Log("Severus White White Severus é gay");
+                    foreach (Transform test in collider.gameObject.transform) {
+                        test.gameObject.GetComponent<NPCEnemySM>().Teste();
+                    }
                 }
         }
         else
