@@ -10,12 +10,13 @@ public class Farming : NPCAlly {
     public override void Enter() {
         base.Enter();
         sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(1f, 0.92f, 0.016f, 1f);
-        base.FindCurrentEnemy();
+        FindCurrentEnemy();
     }
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        base.FindCurrentEnemy();
+        FindCurrentEnemy();
+        AllyDistance();
     }
 
     public override void UpdatePhysics() {

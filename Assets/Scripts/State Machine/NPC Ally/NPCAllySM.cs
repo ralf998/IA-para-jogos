@@ -7,17 +7,21 @@ public class NPCAllySM : StateMachine {
     [HideInInspector]
     public Farming farmingState;
     [HideInInspector]
-    public Dead deadState;
-    [HideInInspector]
     public Heal healState;
     [HideInInspector]
+    public Group groupState;
+    [HideInInspector]
     public Hit hitState;
+    [HideInInspector]
+    public Dead deadState;
 
     public List<GameObject> enemies;
-    public List<GameObject> allies;
-    public List<GameObject> heals;
     public GameObject nearEnemy;
+    public List<GameObject> heals;
     public GameObject nearHeal;
+    public List<GameObject> allies;
+    public GameObject nearAlly;
+    public float alliesDistance;
 
     public Rigidbody2D rigidBody;
     public Transform tf;
@@ -27,9 +31,10 @@ public class NPCAllySM : StateMachine {
 
     private void Awake() {
         farmingState = new Farming(this);
-        deadState = new Dead(this);
         healState = new Heal(this);
+        groupState = new Group(this);
         hitState = new Hit(this);
+        deadState = new Dead(this);
     }
 
     protected override BaseState GetInitialState() {
@@ -79,6 +84,9 @@ public class NPCAllySM : StateMachine {
         }
         foreach (GameObject ally in allies) {
             ally.GetComponent<NPCAllySM>().allies.Remove(this.gameObject);
+            if (ally.GetComponent<NPCAllySM>().nearAlly == this.gameObject) {
+                ally.GetComponent<NPCAllySM>().nearAlly = null;
+            }
         }
         Destroy(this.gameObject);
     }

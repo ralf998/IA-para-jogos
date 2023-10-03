@@ -16,6 +16,7 @@ public class Heal : NPCAlly {
     public override void UpdateLogic() {
         base.UpdateLogic();
         FindNearHeal();
+        AllyDistance();
     }
 
     public override void UpdatePhysics() {
