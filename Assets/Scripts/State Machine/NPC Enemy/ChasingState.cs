@@ -19,6 +19,6 @@ public class Chasing : NPCEnemy {
     public override void UpdatePhysics() {
         base.UpdatePhysics();
         
-        sm.rigidBody.velocity = sm.speed * (sm.nearTarget.transform.position - sm.tf.position).normalized;
+        sm.rigidBody.velocity = sm.speed * (sm.curTarget.transform.position - sm.tf.position).normalized;
     }
 }

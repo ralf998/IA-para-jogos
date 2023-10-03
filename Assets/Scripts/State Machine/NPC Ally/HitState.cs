@@ -9,8 +9,7 @@ public class Hit : NPCAlly {
 
     public override void Enter() {
         base.Enter();
-        sm.rigidBody.velocity = -sm.rigidBody.velocity/2;
-        sm.Invoke("LeaveStun", 2.0f);
+        sm.Invoke("LeaveStun", 0.2f);
     }
 
     public override void UpdateLogic() {}

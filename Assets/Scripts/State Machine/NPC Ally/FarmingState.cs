@@ -9,6 +9,7 @@ public class Farming : NPCAlly {
 
     public override void Enter() {
         base.Enter();
+        base.FindCurrentEnemy();
     }
 
     public override void UpdateLogic() {
@@ -18,7 +19,6 @@ public class Farming : NPCAlly {
 
     public override void UpdatePhysics() {
         base.UpdatePhysics();
-        
         sm.rigidBody.velocity = sm.speed * (sm.nearEnemy.transform.position - sm.tf.position).normalized;
     }
 }

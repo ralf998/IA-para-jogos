@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 14366644}
   tf: {fileID: 14366646}
   speed: 0.5
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 189525501}
   tf: {fileID: 189525503}
   speed: 0.5
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 297303340}
   tf: {fileID: 297303342}
   speed: 0.5
@@ -629,7 +629,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 555349572}
   tf: {fileID: 555349574}
   speed: 0.5
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 641920083}
   tf: {fileID: 641920085}
   speed: 0.5
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 1281039721}
   tf: {fileID: 1281039723}
   speed: 0.5
@@ -1244,7 +1244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281039718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: 3.41, z: 0}
+  m_LocalPosition: {x: -1.61, y: 2.98, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1284,7 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 1497925778}
   tf: {fileID: 1497925780}
   speed: 0.5
@@ -1399,7 +1399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497925775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2, y: -1.1, z: 0}
+  m_LocalPosition: {x: 4.66, y: -1.98, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1777,7 +1777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 2095720918}
   tf: {fileID: 2095720920}
   speed: 0.5
@@ -1932,7 +1932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  nearTarget: {fileID: 0}
+  curTarget: {fileID: 0}
   rigidBody: {fileID: 2147302052}
   tf: {fileID: 2147302054}
   speed: 0.5

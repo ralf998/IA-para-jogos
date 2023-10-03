@@ -11,7 +11,7 @@ public class NPCEnemySM : StateMachine {
     public Stun stunState;
 
     public List<GameObject> targets;
-    public GameObject nearTarget;
+    public GameObject curTarget;
 
     public Rigidbody2D rigidBody;
     public Transform tf;
@@ -32,8 +32,7 @@ public class NPCEnemySM : StateMachine {
         return chasingState;
     }
 
-    void OnCollisionEnter2D(Collision2D collisionInfo)
-    {
+    void OnCollisionEnter2D(Collision2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "Ally") {
             life-=5;
             ChangeState(stunState);

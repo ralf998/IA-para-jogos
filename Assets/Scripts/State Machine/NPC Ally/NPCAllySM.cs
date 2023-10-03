@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class NPCAllySM : StateMachine {
     [HideInInspector]
@@ -45,10 +46,23 @@ public class NPCAllySM : StateMachine {
         if (collisionInfo.gameObject.tag == "Enemy") {
             life-=10;
             ChangeState(hitState);
+            rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "HealthPack") {
             //life+=30;
             heals.Remove(collisionInfo.gameObject);
+            if (!heals.Any()) {
+                nearHeal = null;
+            }
+            foreach (GameObject ally in allies) {
+                ally.GetComponent<NPCAllySM>().heals = heals;
+                if (!heals.Any()) {
+                    ally.GetComponent<NPCAllySM>().nearHeal = null;
+                }
+            }
         }
     }
 
@@ -59,6 +73,9 @@ public class NPCAllySM : StateMachine {
     public void Die() {
         foreach (GameObject enemy in enemies) {
             enemy.GetComponent<NPCEnemySM>().targets.Remove(this.gameObject);
+            if (enemy.GetComponent<NPCEnemySM>().curTarget == this.gameObject) {
+                enemy.GetComponent<NPCEnemySM>().curTarget = null;
+            }
         }
         foreach (GameObject ally in allies) {
             ally.GetComponent<NPCAllySM>().allies.Remove(this.gameObject);
