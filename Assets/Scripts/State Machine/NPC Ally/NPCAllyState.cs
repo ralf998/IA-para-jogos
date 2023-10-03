@@ -21,19 +21,23 @@ public class NPCAlly : BaseState {
             stateMachine.ChangeState(sm.healState);
         } else if (!sm.heals.Any()) {
             stateMachine.ChangeState(sm.farmingState);
-        }
-        if (sm.life > 70) {
+        } else {
             stateMachine.ChangeState(sm.farmingState);
         }
+        /*if (sm.life > 70) {
+            stateMachine.ChangeState(sm.farmingState);
+        }*/
     }
 
     public void FindCurrentEnemy() {
         float distance = Mathf.Infinity;
         foreach (GameObject enemy in sm.enemies) {
-            float curDistance = (enemy.transform.position - sm.tf.position).sqrMagnitude;
-            if (curDistance < distance) {
-                sm.nearEnemy = enemy;
-                distance = curDistance;
+            if (!enemy.GetComponent<Collider2D>().isTrigger) {
+                float curDistance = (enemy.transform.position - sm.tf.position).sqrMagnitude;
+                if (curDistance < distance) {
+                    sm.nearEnemy = enemy;
+                    distance = curDistance;
+                }
             }
         }
     }

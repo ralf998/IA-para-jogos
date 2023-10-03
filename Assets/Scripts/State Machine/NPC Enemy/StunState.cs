@@ -10,7 +10,7 @@ public class Stun : NPCEnemy {
     public override void Enter() {
         base.Enter();
         sm.rigidBody.velocity = new Vector3(0,0,0);
-        sm.Invoke("LeaveStun", 5.0f);
+        sm.Invoke("LeaveStun", 0.3f);
     }
 
     public override void UpdateLogic() {}

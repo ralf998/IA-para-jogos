@@ -14,6 +14,9 @@ public class NPCEnemy : BaseState {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
+        if (sm.curTarget == null) {
+            stateMachine.ChangeState(sm.fallenState);//idle
+        }
         if (sm.life <= 0) {
             stateMachine.ChangeState(sm.fallenState);
         }
@@ -26,12 +29,12 @@ public class NPCEnemy : BaseState {
             float tarDistance = (target.transform.position - sm.tf.position).sqrMagnitude;
             if (target.GetComponent<NPCAllySM>().life < 20) {
                 if (tarDistance < distance) {
-                    sm.nearTarget = target;
+                    sm.curTarget = target;
                     distance = tarDistance;
                     tarLife = target.GetComponent<NPCAllySM>().life;
                 }
             } else if (tarLife > 20) {
-                sm.nearTarget = target;
+                sm.curTarget = target;
                 distance = tarDistance;
                 tarLife = target.GetComponent<NPCAllySM>().life;
             }
