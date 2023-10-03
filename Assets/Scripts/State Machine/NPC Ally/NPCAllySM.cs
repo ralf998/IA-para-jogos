@@ -35,6 +35,7 @@ public class NPCAllySM : StateMachine {
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         allies.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         heals.AddRange(GameObject.FindGameObjectsWithTag("HealthPack"));
+        allies.Remove(this.gameObject);
         tf = GetComponent<Transform>();
         farmingState.FindCurrentEnemy();
         return farmingState;
@@ -56,6 +57,12 @@ public class NPCAllySM : StateMachine {
     }
 
     public void Die() {
+        foreach (GameObject enemy in enemies) {
+            enemy.GetComponent<NPCEnemySM>().targets.Remove(this.gameObject);
+        }
+        foreach (GameObject ally in allies) {
+            ally.GetComponent<NPCAllySM>().allies.Remove(this.gameObject);
+        }
         Destroy(this.gameObject);
     }
 
