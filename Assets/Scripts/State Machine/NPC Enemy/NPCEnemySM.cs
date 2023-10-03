@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class NPCEnemySM : StateMachine {
     [HideInInspector]
+    public Idle idleState;
+    [HideInInspector]
     public Chasing chasingState;
     [HideInInspector]
-    public Fallen fallenState;
-    [HideInInspector]
     public Stun stunState;
+    [HideInInspector]
+    public Fallen fallenState;
 
     public List<GameObject> targets;
     public GameObject curTarget;
@@ -20,16 +22,17 @@ public class NPCEnemySM : StateMachine {
     public float damage = 10;
 
     private void Awake() {
+        idleState = new Idle(this);
         chasingState = new Chasing(this);
-        fallenState = new Fallen(this);
         stunState = new Stun(this);
+        fallenState = new Fallen(this);
     }
 
     protected override BaseState GetInitialState() {
         targets.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         tf = GetComponent<Transform>();
         chasingState.FindCurrentTarget();
-        return chasingState;
+        return idleState;
     }
 
     void OnCollisionEnter2D(Collision2D collisionInfo) {

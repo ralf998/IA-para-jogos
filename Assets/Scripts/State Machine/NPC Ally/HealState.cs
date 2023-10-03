@@ -9,6 +9,7 @@ public class Heal : NPCAlly {
 
     public override void Enter() {
         base.Enter();
+        sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(1f, 0.46f, 0.008f, 1f);
         FindNearHeal();
     }
 

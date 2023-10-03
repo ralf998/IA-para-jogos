@@ -14,11 +14,14 @@ public class NPCEnemy : BaseState {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        if (sm.curTarget == null) {
-            stateMachine.ChangeState(sm.fallenState);//idle
-        }
-        if (sm.life <= 0) {
+        if (sm.life <= 0 && stateMachine.currentState != sm.fallenState) {
             stateMachine.ChangeState(sm.fallenState);
+        } else if (stateMachine.currentState != sm.fallenState) {
+            if (sm.curTarget == null) {
+                stateMachine.ChangeState(sm.idleState);
+            } else {
+                stateMachine.ChangeState(sm.chasingState);
+            }
         }
     }
 
