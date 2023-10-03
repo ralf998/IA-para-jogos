@@ -14,7 +14,6 @@ public class Idle : NPCEnemy {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        base.FindCurrentTarget();
     }
 
     public override void UpdatePhysics() {

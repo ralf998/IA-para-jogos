@@ -14,9 +14,10 @@ public class NPCEnemy : BaseState {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
-        if (sm.life <= 0 && stateMachine.currentState != sm.fallenState) {
+        FindCurrentTarget();
+        if (sm.life <= 0) {
             stateMachine.ChangeState(sm.fallenState);
-        } else if (stateMachine.currentState != sm.fallenState) {
+        } else {
             if (sm.curTarget == null) {
                 stateMachine.ChangeState(sm.idleState);
             } else {
@@ -26,21 +27,23 @@ public class NPCEnemy : BaseState {
     }
 
     public void FindCurrentTarget() {
-        float distance = Mathf.Infinity;
+        GameObject inRangeTarget = null;
+        float distance = 20;
         float tarLife = 100;
         foreach (GameObject target in sm.targets) {
             float tarDistance = (target.transform.position - sm.tf.position).sqrMagnitude;
-            if (target.GetComponent<NPCAllySM>().life < 20) {
-                if (tarDistance < distance) {
-                    sm.curTarget = target;
+            if (tarDistance < distance) {
+                if (target.GetComponent<NPCAllySM>().life < 20) {
+                    inRangeTarget = target;
+                    distance = tarDistance;
+                    tarLife = target.GetComponent<NPCAllySM>().life;
+                } else if (tarLife > 20) {
+                    inRangeTarget = target;
                     distance = tarDistance;
                     tarLife = target.GetComponent<NPCAllySM>().life;
                 }
-            } else if (tarLife > 20) {
-                sm.curTarget = target;
-                distance = tarDistance;
-                tarLife = target.GetComponent<NPCAllySM>().life;
             }
         }
+        sm.curTarget = inRangeTarget;
     }
 }

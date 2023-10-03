@@ -13,9 +13,7 @@ public class Fallen : NPCEnemy {
         sm.rigidBody.GetComponent<Collider2D>().isTrigger = true;
     }
 
-    public override void UpdateLogic() {
-        base.UpdateLogic();
-    }
+    public override void UpdateLogic() {}
 
     public override void UpdatePhysics() {
         base.UpdatePhysics();
@@ -24,6 +22,7 @@ public class Fallen : NPCEnemy {
     public override void Exit() {
         base.Exit();
         sm.rigidBody.GetComponent<Collider2D>().isTrigger = false;
-        sm.life = 20;
+        sm.life = 30;
+        sm.damage = 5;
     }
 }
