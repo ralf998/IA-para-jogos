@@ -9,6 +9,7 @@ public class Hit : NPCAlly {
 
     public override void Enter() {
         base.Enter();
+        sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1f);
         sm.Invoke("LeaveStun", 0.2f);
     }
 

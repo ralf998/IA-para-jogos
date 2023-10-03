@@ -9,6 +9,7 @@ public class Fallen : NPCEnemy {
 
     public override void Enter() {
         base.Enter();
+        sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.2f);
         sm.rigidBody.GetComponent<Collider2D>().isTrigger = true;
     }
 

@@ -1616,7 +1616,7 @@ MonoBehaviour:
   rigidBody: {fileID: 2035148249}
   tf: {fileID: 2035148252}
   speed: 1
-  life: 5
+  life: 29
   damage: 10
 --- !u!50 &2035148249
 Rigidbody2D:
