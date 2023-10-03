@@ -18,8 +18,8 @@ public class NPCEnemySM : StateMachine {
     public Rigidbody2D rigidBody;
     public Transform tf;
     public float speed = 0.5f;
-    public float life = 20;
-    public float damage = 10;
+    public float life = 30;
+    public float damage = 5;
 
     private void Awake() {
         idleState = new Idle(this);
@@ -37,13 +37,13 @@ public class NPCEnemySM : StateMachine {
 
     void OnCollisionEnter2D(Collision2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "Ally") {
-            life-=5;
+            life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
             ChangeState(stunState);
         }
     }
 
     public void LeaveStun() {
-        fallenState.UpdateLogic();
+        idleState.UpdateLogic();
     }
     /*
     private void Update() {

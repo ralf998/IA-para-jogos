@@ -44,7 +44,7 @@ public class NPCAllySM : StateMachine {
 
     void OnCollisionEnter2D(Collision2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "Enemy") {
-            life-=5;
+            life -= collisionInfo.gameObject.GetComponent<NPCEnemySM>().damage;
             ChangeState(hitState);
             rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized;
         }
