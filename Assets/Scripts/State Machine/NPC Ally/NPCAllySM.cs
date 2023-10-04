@@ -53,11 +53,14 @@ public class NPCAllySM : StateMachine {
             ChangeState(hitState);
             rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized;
         }
+        if (collisionInfo.gameObject.tag == "Ally") {
+            ChangeState(hitState);
+            rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized/2;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "HealthPack") {
-            //life+=30;
             heals.Remove(collisionInfo.gameObject);
             if (!heals.Any()) {
                 nearHeal = null;
@@ -72,7 +75,7 @@ public class NPCAllySM : StateMachine {
     }
 
     public void LeaveStun() {
-        deadState.UpdateLogic();
+        ChangeState(farmingState);
     }
 
     public void Die() {

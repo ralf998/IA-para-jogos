@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Heal : NPCAlly {
     public Heal(NPCAllySM stateMachine) : base("Heal", stateMachine) {
@@ -14,13 +15,15 @@ public class Heal : NPCAlly {
     }
 
     public override void UpdateLogic() {
-        base.UpdateLogic();
         FindNearHeal();
-        AllyDistance();
+        if (sm.life > 30 || sm.nearHeal == null) {
+            stateMachine.ChangeState(sm.farmingState);
+        }
+        base.UpdateLogic();
     }
 
     public override void UpdatePhysics() {
-        base.UpdatePhysics();
         sm.rigidBody.velocity = sm.speed * (sm.nearHeal.transform.position - sm.tf.position).normalized;
+        base.UpdatePhysics();
     }
 }

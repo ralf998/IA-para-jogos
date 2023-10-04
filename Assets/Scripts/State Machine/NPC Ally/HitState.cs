@@ -13,9 +13,9 @@ public class Hit : NPCAlly {
         sm.Invoke("LeaveStun", 0.2f);
     }
 
-    public override void UpdateLogic() {}
-
-    public override void UpdatePhysics() {
-        base.UpdatePhysics();
+    public override void UpdateLogic() {
+        base.UpdateLogic();
     }
+
+    public override void UpdatePhysics() {}
 }

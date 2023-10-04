@@ -15,19 +15,18 @@ public class Group : NPCAlly {
 
     public override void UpdateLogic() {
         AllyDistance();
-        if (sm.life <= 0) {
-            stateMachine.ChangeState(sm.deadState);
-        } else if (!sm.allies.Any()) {
+        if (!sm.allies.Any()) {
             stateMachine.ChangeState(sm.farmingState);
         } else if (sm.life <= 30 && sm.heals.Any() && sm.alliesDistance < 50) {
             stateMachine.ChangeState(sm.healState);
         } else if (sm.alliesDistance < 20) {
             stateMachine.ChangeState(sm.farmingState);
         }
+        base.UpdateLogic();
     }
 
     public override void UpdatePhysics() {
-        base.UpdatePhysics();
         sm.rigidBody.velocity = sm.speed * (sm.nearAlly.transform.position - sm.tf.position).normalized;
+        base.UpdatePhysics();
     }
 }

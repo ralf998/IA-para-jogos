@@ -17,40 +17,45 @@ public class NPCAlly : BaseState {
         base.UpdateLogic();
         if (sm.life <= 0) {
             stateMachine.ChangeState(sm.deadState);
-        } else if (sm.life <= 30 && sm.heals.Any()) {
-            stateMachine.ChangeState(sm.healState);
-        } else if (sm.life <= 30 && !sm.heals.Any() && sm.alliesDistance > 30) {
-            stateMachine.ChangeState(sm.groupState);
-        } else if (sm.life < 90 && sm.allies.Any() && sm.alliesDistance > 50) {
-            stateMachine.ChangeState(sm.groupState);
-        } else {
-            stateMachine.ChangeState(sm.farmingState);
+        }
+    }
+
+    public override void UpdatePhysics() {
+        base.UpdatePhysics();
+        if (sm.nearAlly != null && 5 > (sm.nearAlly.transform.position - sm.tf.position).sqrMagnitude) {
+            sm.rigidBody.velocity = sm.speed * (sm.rigidBody.velocity - new Vector2((sm.nearAlly.transform.position - sm.tf.position).x, (sm.nearAlly.transform.position - sm.tf.position).z).normalized/3).normalized;
         }
     }
 
     public void FindCurrentEnemy() {
+        GameObject targetEnemy = null;
         float distance = Mathf.Infinity;
         foreach (GameObject enemy in sm.enemies) {
             if (!enemy.GetComponent<Collider2D>().isTrigger) {
                 float currentDistance = (enemy.transform.position - sm.tf.position).sqrMagnitude;
                 if (currentDistance < distance) {
-                    sm.nearEnemy = enemy;
+                    targetEnemy = enemy;
                     distance = currentDistance;
                 }
             }
         }
+        sm.nearEnemy = targetEnemy;
     }
 
     public void FindNearHeal() {
         if (sm.heals.Any()) {
+            GameObject targetHeal = null;
             float distance = Mathf.Infinity;
             foreach (GameObject heal in sm.heals) {
-                float currentDistance = (heal.transform.position - sm.tf.position).sqrMagnitude;
-                if (currentDistance < distance) {
-                    sm.nearHeal = heal;
-                    distance = currentDistance;
+                if (!sm.allies.Any() || !(sm.nearAlly.GetComponent<NPCAllySM>().nearHeal == heal && sm.nearAlly.GetComponent<NPCAllySM>().life <= sm.life)) {
+                    float currentDistance = (heal.transform.position - sm.tf.position).sqrMagnitude;
+                    if (currentDistance < distance) {
+                        targetHeal = heal;
+                        distance = currentDistance;
+                    }
                 }
             }
+            sm.nearHeal = targetHeal;
         }
     }
 
@@ -74,7 +79,7 @@ public class NPCAlly : BaseState {
             closeDistance += 10;
         }
 
-        if (avrgDistance > 50) {
+        if (avrgDistance > 50 || closeDistance < 2*avrgDistance/3) {
             sm.alliesDistance = closeDistance;
         } else {
             sm.alliesDistance = avrgDistance;

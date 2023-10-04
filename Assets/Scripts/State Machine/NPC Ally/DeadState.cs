@@ -12,11 +12,7 @@ public class Dead : NPCAlly {
         sm.Die();
     }
 
-    public override void UpdateLogic() {
-        base.UpdateLogic();
-    }
+    public override void UpdateLogic() {}
 
-    public override void UpdatePhysics() {
-        base.UpdatePhysics();
-    }
+    public override void UpdatePhysics() {}
 }
