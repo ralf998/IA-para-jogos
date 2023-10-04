@@ -7,17 +7,21 @@ public class NPCAllySM : StateMachine {
     [HideInInspector]
     public Farming farmingState;
     [HideInInspector]
-    public Dead deadState;
-    [HideInInspector]
     public Heal healState;
     [HideInInspector]
+    public Group groupState;
+    [HideInInspector]
     public Hit hitState;
+    [HideInInspector]
+    public Dead deadState;
 
     public List<GameObject> enemies;
-    public List<GameObject> allies;
-    public List<GameObject> heals;
     public GameObject nearEnemy;
+    public List<GameObject> heals;
     public GameObject nearHeal;
+    public List<GameObject> allies;
+    public GameObject nearAlly;
+    public float alliesDistance;
 
     public Rigidbody2D rigidBody;
     public Transform tf;
@@ -27,9 +31,10 @@ public class NPCAllySM : StateMachine {
 
     private void Awake() {
         farmingState = new Farming(this);
-        deadState = new Dead(this);
         healState = new Heal(this);
+        groupState = new Group(this);
         hitState = new Hit(this);
+        deadState = new Dead(this);
     }
 
     protected override BaseState GetInitialState() {
@@ -48,11 +53,14 @@ public class NPCAllySM : StateMachine {
             ChangeState(hitState);
             rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized;
         }
+        if (collisionInfo.gameObject.tag == "Ally") {
+            ChangeState(hitState);
+            rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized/2;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "HealthPack") {
-            //life+=30;
             heals.Remove(collisionInfo.gameObject);
             if (!heals.Any()) {
                 nearHeal = null;
@@ -67,7 +75,7 @@ public class NPCAllySM : StateMachine {
     }
 
     public void LeaveStun() {
-        deadState.UpdateLogic();
+        ChangeState(farmingState);
     }
 
     public void Die() {
@@ -79,6 +87,9 @@ public class NPCAllySM : StateMachine {
         }
         foreach (GameObject ally in allies) {
             ally.GetComponent<NPCAllySM>().allies.Remove(this.gameObject);
+            if (ally.GetComponent<NPCAllySM>().nearAlly == this.gameObject) {
+                ally.GetComponent<NPCAllySM>().nearAlly = null;
+            }
         }
         Destroy(this.gameObject);
     }
