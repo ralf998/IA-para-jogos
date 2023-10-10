@@ -18,6 +18,9 @@ public class NPCAlly : BaseState {
         if (sm.life <= 0) {
             stateMachine.ChangeState(sm.deadState);
         }
+        /*if (sm.life > 70) {
+            stateMachine.ChangeState(sm.farmingState);
+        }*/
     }
 
     public override void UpdatePhysics() {
@@ -25,9 +28,6 @@ public class NPCAlly : BaseState {
         if (sm.nearAlly != null && 5 > (sm.nearAlly.transform.position - sm.tf.position).sqrMagnitude) {
             sm.rigidBody.velocity = sm.speed * (sm.rigidBody.velocity - new Vector2((sm.nearAlly.transform.position - sm.tf.position).x, (sm.nearAlly.transform.position - sm.tf.position).z).normalized/3).normalized;
         }
-        /*if (sm.life > 70) {
-            stateMachine.ChangeState(sm.farmingState);
-        }*/
     }
 
     public void FindCurrentEnemy() {
