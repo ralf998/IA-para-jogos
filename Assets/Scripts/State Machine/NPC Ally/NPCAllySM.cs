@@ -28,6 +28,7 @@ public class NPCAllySM : StateMachine {
     public float speed = 1f;
     public float life = 100;
     public float damage = 10;
+    public int resources = 0;
 
     private void Awake() {
         farmingState = new Farming(this);
