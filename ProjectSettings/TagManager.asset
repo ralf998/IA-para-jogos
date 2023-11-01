@@ -7,6 +7,8 @@ TagManager:
   - Ally
   - Enemy
   - HealthPack
+  - AllyBase
+  - AllyBaseWall
   layers:
   - Default
   - TransparentFX
