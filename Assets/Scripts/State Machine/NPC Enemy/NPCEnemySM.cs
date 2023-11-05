@@ -40,6 +40,17 @@ public class NPCEnemySM : StateMachine {
             life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
             ChangeState(stunState);
         }
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            ChangeState(stunState);
+            rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized/2;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "Ally") {
+            life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
+            ChangeState(stunState);
+        }
     }
 
     public void LeaveStun() {

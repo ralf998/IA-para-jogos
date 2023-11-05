@@ -4,16 +4,36 @@ using UnityEngine;
 
 public class AWallSM : StateMachine {
     [HideInInspector]
-    public AWall aWallState;
+    public Built builtState;
+    [HideInInspector]
+    public Broken brokenState;
     
     public float life = 300;
-    public int resources = 0;
+    public int building = 0;
+
+    public Rigidbody2D rigidBody;
 
     private void Awake() {
-        aWallState = new AWall("", this);
+        builtState = new Built(this);
+        brokenState = new Broken(this);
     }
 
     protected override BaseState GetInitialState() {
-        return aWallState;
+        return builtState;
+    }
+
+    void OnCollisionEnter2D(Collision2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "Enemy") {
+            life -= collisionInfo.gameObject.GetComponent<NPCEnemySM>().damage;
+        }
+    }
+
+    public int Fixes(int resources) {
+        if (currentState is AWall) {
+            AWall cState = (AWall) currentState;
+            return cState.build(resources);
+        } else {
+            return resources;
+        }
     }
 }

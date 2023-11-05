@@ -28,7 +28,7 @@ public class NPCAllySM : StateMachine {
     public float speed = 1f;
     public float life = 100;
     public float damage = 10;
-    public int resources = 0;
+    public int resources = 200;
 
     private void Awake() {
         farmingState = new Farming(this);
@@ -58,6 +58,9 @@ public class NPCAllySM : StateMachine {
             ChangeState(hitState);
             rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized/2;
         }
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collisionInfo) {
@@ -72,6 +75,15 @@ public class NPCAllySM : StateMachine {
                     ally.GetComponent<NPCAllySM>().nearHeal = null;
                 }
             }
+        }
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            resources = collisionInfo.gameObject.GetComponent<AWallSM>().Fixes(resources);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "AllyBase") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 

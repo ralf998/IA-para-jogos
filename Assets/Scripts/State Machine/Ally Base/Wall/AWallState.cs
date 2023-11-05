@@ -18,4 +18,8 @@ public class AWall : BaseState {
     public override void UpdatePhysics() {
         base.UpdatePhysics();
     }
+
+    public virtual int build(int resources) {
+        return resources;
+    }
 }
