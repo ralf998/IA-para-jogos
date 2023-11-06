@@ -9,6 +9,7 @@ public class Broken : AWall {
 
     public override void Enter() {
         base.Enter();
+        sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(0.49f, 0.49f, 0.49f, 0.1f);
         sm.rigidBody.GetComponent<Collider2D>().isTrigger = true;
     }
 
@@ -20,6 +21,11 @@ public class Broken : AWall {
     }
 
     public override void UpdatePhysics() {}
+
+    public override void Exit() {
+        sm.life = 300;
+        sm.building = 0;
+    }
 
     public override int build(int resources) {
         sm.building += resources;

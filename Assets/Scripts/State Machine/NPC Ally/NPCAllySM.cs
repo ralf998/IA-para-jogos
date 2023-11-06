@@ -82,7 +82,7 @@ public class NPCAllySM : StateMachine {
     }
 
     void OnTriggerExit2D(Collider2D collisionInfo) {
-        if (collisionInfo.gameObject.tag == "AllyBase") {
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
             rigidBody.GetComponent<Collider2D>().isTrigger = false;
         }
     }

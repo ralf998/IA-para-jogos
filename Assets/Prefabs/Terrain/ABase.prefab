@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5302566956583722394}
   - component: {fileID: 1993117554845008027}
   - component: {fileID: 3174602542648121493}
+  - component: {fileID: 3914055764082522788}
   m_Layer: 0
   m_Name: AWallN
   m_TagString: AllyBaseWall
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5302566958134181259}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5302566956583722394
 SpriteRenderer:
@@ -133,6 +134,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &3914055764082522788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302566956583722392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a7297009e108f42801a09576330d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 50
+  building: 0
+  rigidBody: {fileID: 3174602542648121493}
 --- !u!1 &5302566957424499573
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +161,7 @@ GameObject:
   - component: {fileID: 5302566957424499575}
   - component: {fileID: 373117474099083643}
   - component: {fileID: 8708552462437368493}
+  - component: {fileID: 4771135761860947728}
   m_Layer: 0
   m_Name: AWallS
   m_TagString: AllyBaseWall
@@ -165,7 +182,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5302566958134181259}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5302566957424499575
 SpriteRenderer:
@@ -266,6 +283,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &4771135761860947728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302566957424499573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a7297009e108f42801a09576330d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 50
+  building: 0
+  rigidBody: {fileID: 8708552462437368493}
 --- !u!1 &5302566957932305517
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +310,7 @@ GameObject:
   - component: {fileID: 5302566957932305519}
   - component: {fileID: 8505103288551320762}
   - component: {fileID: 3106606385254512232}
+  - component: {fileID: 7130223833785379223}
   m_Layer: 0
   m_Name: AWallW
   m_TagString: AllyBaseWall
@@ -298,7 +331,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5302566958134181259}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5302566957932305519
 SpriteRenderer:
@@ -399,6 +432,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &7130223833785379223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302566957932305517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a7297009e108f42801a09576330d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 50
+  building: 0
+  rigidBody: {fileID: 3106606385254512232}
 --- !u!1 &5302566958104026989
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +459,7 @@ GameObject:
   - component: {fileID: 5302566958104026991}
   - component: {fileID: 2272459969223662625}
   - component: {fileID: 5826002810558694752}
+  - component: {fileID: 5630519768024840272}
   m_Layer: 0
   m_Name: AWallE
   m_TagString: AllyBaseWall
@@ -431,7 +480,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5302566958134181259}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5302566958104026991
 SpriteRenderer:
@@ -532,6 +581,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &5630519768024840272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302566958104026989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a7297009e108f42801a09576330d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 50
+  building: 0
+  rigidBody: {fileID: 5826002810558694752}
 --- !u!1 &5302566958134181302
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +607,8 @@ GameObject:
   - component: {fileID: 5302566958134181259}
   - component: {fileID: 5302566958134181256}
   - component: {fileID: 5302566958134181257}
+  - component: {fileID: 6811794724906615839}
+  - component: {fileID: 5411799596525635440}
   m_Layer: 0
   m_Name: ABase
   m_TagString: AllyBase
@@ -562,10 +628,10 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5302566958104026988}
   - {fileID: 5302566956583722395}
-  - {fileID: 5302566957424499572}
   - {fileID: 5302566957932305516}
+  - {fileID: 5302566958104026988}
+  - {fileID: 5302566957424499572}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -647,3 +713,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6811794724906615839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302566958134181302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d356decfa501743959be2d65a9bc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walls:
+  - {fileID: 5302566956583722392}
+  - {fileID: 5302566957932305517}
+  - {fileID: 5302566958104026989}
+  - {fileID: 5302566957424499573}
+  rigidBody: {fileID: 5411799596525635440}
+--- !u!50 &5411799596525635440
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302566958134181302}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

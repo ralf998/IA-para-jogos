@@ -8,7 +8,7 @@ public class AWallSM : StateMachine {
     [HideInInspector]
     public Broken brokenState;
     
-    public float life = 300;
+    public float life = 50;
     public int building = 0;
 
     public Rigidbody2D rigidBody;

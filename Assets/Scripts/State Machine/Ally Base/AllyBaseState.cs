@@ -13,6 +13,11 @@ public class AllyBase : BaseState {
 
     public override void UpdateLogic() {
         base.UpdateLogic();
+        if (sm.CheckWalls()) {
+            sm.ChangeState(sm.closedState);
+        } else {
+            sm.ChangeState(sm.openedState);
+        }
     }
 
     public override void UpdatePhysics() {

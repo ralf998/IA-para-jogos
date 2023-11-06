@@ -9,6 +9,7 @@ public class Built : AWall {
 
     public override void Enter() {
         base.Enter();
+        sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(0.49f, 0.49f, 0.49f, 0.85f);
         sm.rigidBody.GetComponent<Collider2D>().isTrigger = false;
     }
 
@@ -20,6 +21,11 @@ public class Built : AWall {
     }
 
     public override void UpdatePhysics() {}
+
+    public override void Exit() {
+        sm.life = 0;
+        sm.building = 0;
+    }
 
     public override int build(int resources) {
         sm.life += 3*resources;
