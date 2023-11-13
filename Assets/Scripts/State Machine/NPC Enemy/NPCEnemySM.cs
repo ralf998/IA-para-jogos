@@ -38,6 +38,7 @@ public class NPCEnemySM : StateMachine {
     void OnCollisionEnter2D(Collision2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "Ally") {
             life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
+            rigidBody.velocity = new Vector3(0,0,0);
             ChangeState(stunState);
         }
         if (collisionInfo.gameObject.tag == "AllyBaseWall") {
@@ -47,14 +48,17 @@ public class NPCEnemySM : StateMachine {
     }
 
     void OnTriggerEnter2D(Collider2D collisionInfo) {
-        if (collisionInfo.gameObject.tag == "Ally") {
+        if (collisionInfo.gameObject.tag == "Ally" && currentState != fallenState) {
             life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
+            rigidBody.velocity = 2*speed*(tf.position -collisionInfo.gameObject.transform.position).normalized;
             ChangeState(stunState);
         }
     }
 
     public void LeaveStun() {
-        idleState.UpdateLogic();
+        if (currentState != fallenState) {
+            idleState.UpdateLogic();
+        }
     }
     /*
     private void Update() {

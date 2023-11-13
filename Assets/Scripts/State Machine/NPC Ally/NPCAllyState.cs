@@ -62,6 +62,21 @@ public class NPCAlly : BaseState {
         }
     }
 
+    public void FindNearPackage() {
+        if (sm.packages.Any()) {
+            GameObject targetPackage = null;
+            float distance = Mathf.Infinity;
+            foreach (GameObject package in sm.packages) {
+                float currentDistance = (package.transform.position - sm.tf.position).sqrMagnitude;
+                if (currentDistance < distance) {
+                    targetPackage = package;
+                    distance = currentDistance;
+                }
+            }
+            sm.nearPackage = targetPackage;
+        }
+    }
+
     public void AllyDistance() {
         float avrgDistance = 0;
         float closeDistance = 0;

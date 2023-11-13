@@ -9,6 +9,7 @@ TagManager:
   - HealthPack
   - AllyBase
   - AllyBaseWall
+  - ResourcePackage
   layers:
   - Default
   - TransparentFX

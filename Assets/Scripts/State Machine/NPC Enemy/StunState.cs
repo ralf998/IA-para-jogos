@@ -10,7 +10,6 @@ public class Stun : NPCEnemy {
     public override void Enter() {
         base.Enter();
         sm.rigidBody.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-        sm.rigidBody.velocity = new Vector3(0,0,0);
         sm.Invoke("LeaveStun", 0.3f);
     }
 

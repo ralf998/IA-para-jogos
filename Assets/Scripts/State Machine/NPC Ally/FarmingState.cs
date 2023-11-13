@@ -16,6 +16,7 @@ public class Farming : NPCAlly {
     }
 
     public override void UpdateLogic() {
+        FindNearPackage();
         FindCurrentEnemy();
         AllyDistance();
         FindNearHeal();
@@ -42,7 +43,11 @@ public class Farming : NPCAlly {
     }
 
     public override void UpdatePhysics() {
-        sm.rigidBody.velocity = sm.speed * (sm.nearEnemy.transform.position - sm.tf.position).normalized;
+        if (sm.nearPackage != null) {
+            sm.rigidBody.velocity = sm.speed * (sm.nearPackage.transform.position - sm.tf.position).normalized;
+        } else {
+            sm.rigidBody.velocity = sm.speed * (sm.nearEnemy.transform.position - sm.tf.position).normalized;
+        }
         base.UpdatePhysics();
         if (sm.nearHeal != null && (((sm.nearHeal.transform.position - sm.tf.position).sqrMagnitude < 10) && (Mathf.Abs(Mathf.Atan2(sm.rigidBody.velocity.x, sm.rigidBody.velocity.y)*Mathf.Rad2Deg - Mathf.Atan2(sm.nearHeal.transform.position.x, sm.nearHeal.transform.position.z)*Mathf.Rad2Deg) < 45))) {
             sm.rigidBody.velocity = sm.speed * (sm.rigidBody.velocity - new Vector2((sm.nearHeal.transform.position - sm.tf.position).x, (sm.nearHeal.transform.position - sm.tf.position).z).normalized).normalized;

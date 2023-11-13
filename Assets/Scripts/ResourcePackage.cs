@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPack : Interactable
+public class ResourcePackage : Interactable
 {
     void Start()
     {
@@ -11,7 +11,7 @@ public class HealthPack : Interactable
 
     protected override void Interact(GameObject npc)
     {
-        npc.GetComponent<NPCAllySM>().life += 30;
+        npc.GetComponent<NPCAllySM>().resources += 50;
         Destroy(this.gameObject);
     }
 }

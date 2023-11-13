@@ -15,6 +15,8 @@ public class NPCAllySM : StateMachine {
     [HideInInspector]
     public Dead deadState;
 
+    public List<GameObject> packages;
+    public GameObject nearPackage;
     public List<GameObject> enemies;
     public GameObject nearEnemy;
     public List<GameObject> heals;
@@ -28,7 +30,7 @@ public class NPCAllySM : StateMachine {
     public float speed = 1f;
     public float life = 100;
     public float damage = 10;
-    public int resources = 200;
+    public int resources = 50;
 
     private void Awake() {
         farmingState = new Farming(this);
@@ -42,6 +44,7 @@ public class NPCAllySM : StateMachine {
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         allies.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         heals.AddRange(GameObject.FindGameObjectsWithTag("HealthPack"));
+        packages.AddRange(GameObject.FindGameObjectsWithTag("ResourcePackage"));
         allies.Remove(this.gameObject);
         tf = GetComponent<Transform>();
         farmingState.FindCurrentEnemy();
@@ -76,8 +79,30 @@ public class NPCAllySM : StateMachine {
                 }
             }
         }
+        if (collisionInfo.gameObject.tag == "ResourcePackage") {
+            packages.Remove(collisionInfo.gameObject);
+            if (!packages.Any()) {
+                nearPackage = null;
+            }
+            foreach (GameObject ally in allies) {
+                ally.GetComponent<NPCAllySM>().packages = packages;
+                if (!packages.Any()) {
+                    ally.GetComponent<NPCAllySM>().nearPackage = null;
+                }
+            }
+        }
+        if (collisionInfo.gameObject.tag == "Enemy") {
+            ChangeState(hitState);
+            rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized/2;
+        }
         if (collisionInfo.gameObject.tag == "AllyBaseWall") {
             resources = collisionInfo.gameObject.GetComponent<AWallSM>().Fixes(resources);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "AllyBaseWall" && collisionInfo.gameObject.GetComponent<AWallSM>().currentState.name == "Broken") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 
