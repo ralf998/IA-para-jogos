@@ -66,6 +66,12 @@ public class NPCAllySM : StateMachine {
         }
     }
 
+    void OnCollisionStay2D(Collision2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "HealthPack") {
             heals.Remove(collisionInfo.gameObject);
@@ -91,7 +97,7 @@ public class NPCAllySM : StateMachine {
                 }
             }
         }
-        if (collisionInfo.gameObject.tag == "Enemy") {
+        if (collisionInfo.gameObject.tag == "Enemy" && collisionInfo.gameObject.GetComponent<NPCEnemySM>().currentState.name != "Fallen") {
             ChangeState(hitState);
             rigidBody.velocity = speed*(tf.position -collisionInfo.gameObject.transform.position).normalized/2;
         }
