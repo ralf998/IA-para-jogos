@@ -79,9 +79,11 @@ public class NPCAllySM : StateMachine {
                 nearHeal = null;
             }
             foreach (GameObject ally in allies) {
-                ally.GetComponent<NPCAllySM>().heals = heals;
-                if (!heals.Any()) {
-                    ally.GetComponent<NPCAllySM>().nearHeal = null;
+                if(collisionInfo.gameObject.GetComponent<NPCAllySM>() != null) {
+                    ally.GetComponent<NPCAllySM>().heals = heals;
+                    if (!heals.Any()) {
+                        ally.GetComponent<NPCAllySM>().nearHeal = null;
+                    }
                 }
             }
         }
@@ -91,9 +93,11 @@ public class NPCAllySM : StateMachine {
                 nearPackage = null;
             }
             foreach (GameObject ally in allies) {
-                ally.GetComponent<NPCAllySM>().packages = packages;
-                if (!packages.Any()) {
-                    ally.GetComponent<NPCAllySM>().nearPackage = null;
+                if(collisionInfo.gameObject.GetComponent<NPCAllySM>() != null) {
+                    ally.GetComponent<NPCAllySM>().packages = packages;
+                    if (!packages.Any()) {
+                        ally.GetComponent<NPCAllySM>().nearPackage = null;
+                    }
                 }
             }
         }
@@ -130,9 +134,11 @@ public class NPCAllySM : StateMachine {
             }
         }
         foreach (GameObject ally in allies) {
-            ally.GetComponent<NPCAllySM>().allies.Remove(this.gameObject);
-            if (ally.GetComponent<NPCAllySM>().nearAlly == this.gameObject) {
-                ally.GetComponent<NPCAllySM>().nearAlly = null;
+            if(ally.GetComponent<NPCAllySM>() != null) {
+                ally.GetComponent<NPCAllySM>().allies.Remove(this.gameObject);
+                if (ally.GetComponent<NPCAllySM>().nearAlly == this.gameObject) {
+                    ally.GetComponent<NPCAllySM>().nearAlly = null;
+                }
             }
         }
         Destroy(this.gameObject);

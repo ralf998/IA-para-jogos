@@ -5,10 +5,10 @@ using BehaviorTree;
 
 public class AllyBT : BTree
 {
-    public UnityEngine.Transform[] waypoints;
+    public Transform[] waypoints;
 
-    public UnityEngine.Rigidbody2D rigidBody;
-    public UnityEngine.Transform tf;
+    public Rigidbody2D rigidBody;
+    public Transform tf;
     // public float speed = 1f;
     public static float speed = 1f;
     public static float life = 100;
@@ -61,9 +61,37 @@ public class AllyBT : BTree
         life += value;
     }
 
+    void OnCollisionEnter2D(Collision2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "Enemy") {
+            IncreaseLifePoints(-collisionInfo.gameObject.GetComponent<NPCEnemySM>().damage);
+            rigidBody.velocity = (tf.position -collisionInfo.gameObject.transform.position).normalized;
+        }
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "AllyBaseWall") {
             resources = collisionInfo.gameObject.GetComponent<AWallSM>().Fixes(resources);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "AllyBaseWall" && collisionInfo.gameObject.GetComponent<AWallSM>().currentState.name == "Broken") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = false;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            rigidBody.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 }

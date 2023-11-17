@@ -11,6 +11,7 @@ public class TaskGoToWallBase : Node
     public TaskGoToWallBase(Transform transform)
     {
         _transform = transform;
+        transform.GetComponent<SpriteRenderer>().color = new Color(0.8f, 0.8f, 0.016f, 1f);
     }
 
     public override NodeState Evaluate()

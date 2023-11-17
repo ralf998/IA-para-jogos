@@ -6,8 +6,6 @@ using BehaviorTree;
 
 public class CheckEnemyInFOVRange : Node
 {
-    //private static int _enemyLayerMask = 10;//1 << 6;
-
     private Transform _transform;
     //private Animator _animator;
     GameObject targetEnemy;
@@ -24,7 +22,7 @@ public class CheckEnemyInFOVRange : Node
         if(AllyBT.life <= AllyBT.criticalLife)
         {
             state = NodeState.FAILURE;
-            Debug.Log(state + " low health");
+            //Debug.Log(state + " low health");
             return state;
         }
         else
@@ -43,20 +41,15 @@ public class CheckEnemyInFOVRange : Node
                             distance = currentDistance;
                         }
                     }
-                /*Collider[] colliders = Physics.OverlapSphere(
-                    _transform.position, AllyBT.fovRange, _enemyLayerMask);
-
-                if (colliders.Length > 0)
-                {*/
                     parent.parent.SetData("target", targetEnemy.transform);
                     //_animator.SetBool("Walking", true);
                     state = NodeState.SUCCESS;
-                    Debug.Log(state);
+                    //Debug.Log(state);
                     return state;
                 }
 
                 state = NodeState.FAILURE;
-                Debug.Log(state + " no target");
+                //Debug.Log(state + " no target");
                 return state;
             }
 
@@ -64,7 +57,5 @@ public class CheckEnemyInFOVRange : Node
             //Debug.Log(state);
             return state;
         }
-        
     }
-
 }

@@ -11,6 +11,7 @@ public class TaskGoToTarget : Node
     public TaskGoToTarget(Transform transform)
     {
         _transform = transform;
+        transform.GetComponent<SpriteRenderer>().color = new Color(1f, 0.92f, 0.016f, 1f);
     }
 
     public override NodeState Evaluate()
