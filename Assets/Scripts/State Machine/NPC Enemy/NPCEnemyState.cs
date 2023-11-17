@@ -32,7 +32,9 @@ public class NPCEnemy : BaseState {
         float tarLife = 100;
         foreach (GameObject target in sm.targets) {
             float tarDistance = (target.transform.position - sm.tf.position).sqrMagnitude;
-            if (tarDistance < distance) {
+            if(target.GetComponent<NPCAllySM>() != null)
+            {
+                if (tarDistance < distance) {
                 if (target.GetComponent<NPCAllySM>().life < 20) {
                     inRangeTarget = target;
                     distance = tarDistance;
@@ -42,6 +44,22 @@ public class NPCEnemy : BaseState {
                     distance = tarDistance;
                     tarLife = target.GetComponent<NPCAllySM>().life;
                 }
+            }
+            }
+            
+            else if(target.GetComponent<AllyBT>() != null)
+            {
+                if (tarDistance < distance) {
+                if (target.GetComponent<AllyBT>().GetLifePoints() < 20) {
+                    inRangeTarget = target;
+                    distance = tarDistance;
+                    tarLife = target.GetComponent<AllyBT>().GetLifePoints();
+                } else if (tarLife > 20) {
+                    inRangeTarget = target;
+                    distance = tarDistance;
+                    tarLife = target.GetComponent<AllyBT>().GetLifePoints();
+                }
+            }
             }
         }
         sm.curTarget = inRangeTarget;
