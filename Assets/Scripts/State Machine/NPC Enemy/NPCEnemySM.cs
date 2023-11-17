@@ -37,7 +37,11 @@ public class NPCEnemySM : StateMachine {
 
     void OnCollisionEnter2D(Collision2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "Ally") {
-            life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
+            if(collisionInfo.gameObject.GetComponent<NPCAllySM>() != null) {
+                life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
+            } else if(collisionInfo.gameObject.GetComponent<AllyBT>() != null) {
+                life -= collisionInfo.gameObject.GetComponent<AllyBT>().damage;
+            }
             rigidBody.velocity = new Vector3(0,0,0);
             ChangeState(stunState);
         }
@@ -49,7 +53,11 @@ public class NPCEnemySM : StateMachine {
 
     void OnTriggerEnter2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "Ally" && currentState != fallenState) {
-            life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
+            if(collisionInfo.gameObject.GetComponent<NPCAllySM>() != null) {
+                life -= collisionInfo.gameObject.GetComponent<NPCAllySM>().damage;
+            } else if(collisionInfo.gameObject.GetComponent<AllyBT>() != null) {
+                life -= collisionInfo.gameObject.GetComponent<AllyBT>().damage;
+            }
             rigidBody.velocity = 2*speed*(tf.position -collisionInfo.gameObject.transform.position).normalized;
             ChangeState(stunState);
         }

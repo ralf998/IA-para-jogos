@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using BehaviorTree;
 
-public class AllyBT : Tree
+public class AllyBT : BTree
 {
     public UnityEngine.Transform[] waypoints;
 
@@ -57,5 +59,11 @@ public class AllyBT : Tree
     public void IncreaseLifePoints(float value)
     {
         life += value;
+    }
+
+    void OnTriggerEnter2D(Collider2D collisionInfo) {
+        if (collisionInfo.gameObject.tag == "AllyBaseWall") {
+            resources = collisionInfo.gameObject.GetComponent<AWallSM>().Fixes(resources);
+        }
     }
 }

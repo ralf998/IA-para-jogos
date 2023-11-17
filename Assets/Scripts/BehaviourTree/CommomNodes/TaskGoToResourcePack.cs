@@ -21,7 +21,6 @@ public class TaskGoToResourcePack : Node
         {
             _transform.position = Vector3.MoveTowards(
                 _transform.position, target.position, AllyBT.speed * Time.deltaTime);
-            _transform.LookAt(target.position);
         }
 
         state = NodeState.RUNNING;
