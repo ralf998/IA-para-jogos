@@ -11,6 +11,7 @@ public class TaskGoToResourcePack : Node
     public TaskGoToResourcePack(Transform transform)
     {
         _transform = transform;
+        transform.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
 
     public override NodeState Evaluate()

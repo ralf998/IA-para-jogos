@@ -11,6 +11,7 @@ public class TaskGoToHealthPack : Node
     public TaskGoToHealthPack(Transform transform)
     {
         _transform = transform;
+        transform.GetComponent<SpriteRenderer>().color = new Color(1f, 0.46f, 0.008f, 1f);
     }
 
     public override NodeState Evaluate()

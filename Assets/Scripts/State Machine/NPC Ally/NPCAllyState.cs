@@ -50,7 +50,7 @@ public class NPCAlly : BaseState {
             GameObject targetHeal = null;
             float distance = Mathf.Infinity;
             foreach (GameObject heal in sm.heals) {
-                if (!sm.allies.Any() || !(sm.nearAlly.GetComponent<NPCAllySM>().nearHeal == heal && sm.nearAlly.GetComponent<NPCAllySM>().life <= sm.life)) {
+                if (!sm.allies.Any() || sm.nearAlly.GetComponent<NPCAllySM>() == null || !(sm.nearAlly.GetComponent<NPCAllySM>().nearHeal == heal && sm.nearAlly.GetComponent<NPCAllySM>().life <= sm.life)) {
                     float currentDistance = (heal.transform.position - sm.tf.position).sqrMagnitude;
                     if (currentDistance < distance) {
                         targetHeal = heal;
