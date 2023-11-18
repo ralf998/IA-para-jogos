@@ -15,7 +15,8 @@ public class NPCEnemySM : StateMachine {
     public List<GameObject> targets;
     public GameObject curTarget;
 
-    public Rigidbody2D rigidBody;
+    //public Rigidbody2D rigidBody;
+    public Rigidbody rigidBody;
     public Transform tf;
     public float speed = 0.5f;
     public float life = 30;

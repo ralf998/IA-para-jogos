@@ -5,15 +5,21 @@ using System.Collections.Generic;
 public class Pathfinding : MonoBehaviour {
 
 	public Transform seeker, target;
+    public GameObject aStar;
 	Grid grid;
 
 	void Awake() {
-		grid = GetComponent<Grid> ();
+		grid = aStar.GetComponent<Grid> ();
+        //grid = GetComponent<Grid> ();
 	}
 
 	void Update() {
 		FindPath (seeker.position, target.position);
 	}
+
+    // void Start() {
+	// 	FindPath (seeker.position, target.position);
+	// }
 
 	void FindPath(Vector3 startPos, Vector3 targetPos) {
 		GridNode startNode = grid.NodeFromWorldPoint(startPos);
@@ -69,6 +75,8 @@ public class Pathfinding : MonoBehaviour {
 		path.Reverse();
 
 		grid.path = path;
+
+        Debug.Log(path);
 
 	}
 

@@ -5,9 +5,7 @@ using BehaviorTree;
 
 public class AllyBT : BTree
 {
-    public Transform[] waypoints;
-
-    public Rigidbody2D rigidBody;
+    public Rigidbody rigidBody;
     public Transform tf;
     // public float speed = 1f;
     public static float speed = 1f;
@@ -67,13 +65,13 @@ public class AllyBT : BTree
             rigidBody.velocity = (tf.position -collisionInfo.gameObject.transform.position).normalized;
         }
         if (collisionInfo.gameObject.tag == "AllyBaseWall") {
-            rigidBody.GetComponent<Collider2D>().isTrigger = true;
+            rigidBody.GetComponent<Collider>().isTrigger = true;
         }
     }
 
     void OnCollisionStay2D(Collision2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "AllyBaseWall") {
-            rigidBody.GetComponent<Collider2D>().isTrigger = true;
+            rigidBody.GetComponent<Collider>().isTrigger = true;
         }
     }
 
@@ -85,13 +83,13 @@ public class AllyBT : BTree
 
     private void OnTriggerStay2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "AllyBaseWall" && collisionInfo.gameObject.GetComponent<AWallSM>().currentState.name == "Broken") {
-            rigidBody.GetComponent<Collider2D>().isTrigger = false;
+            rigidBody.GetComponent<Collider>().isTrigger = false;
         }
     }
 
     void OnTriggerExit2D(Collider2D collisionInfo) {
         if (collisionInfo.gameObject.tag == "AllyBaseWall") {
-            rigidBody.GetComponent<Collider2D>().isTrigger = false;
+            rigidBody.GetComponent<Collider>().isTrigger = false;
         }
     }
 }
