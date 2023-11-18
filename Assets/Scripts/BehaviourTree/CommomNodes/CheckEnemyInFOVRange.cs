@@ -18,6 +18,7 @@ public class CheckEnemyInFOVRange : Node
 
     public override NodeState Evaluate()
     {
+        //Debug.Log("peo");
         object t = GetData("target");
         if(AllyBT.life <= AllyBT.criticalLife)
         {

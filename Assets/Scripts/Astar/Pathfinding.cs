@@ -7,6 +7,7 @@ public class Pathfinding : MonoBehaviour {
 	public Transform seeker, target;
     public GameObject aStar;
 	Grid grid;
+    List<GridNode> gridPath;
 
 	void Awake() {
 		grid = aStar.GetComponent<Grid> ();
@@ -17,11 +18,11 @@ public class Pathfinding : MonoBehaviour {
 		FindPath (seeker.position, target.position);
 	}
 
-    // void Start() {
-	// 	FindPath (seeker.position, target.position);
-	// }
+    public List<GridNode> GetPath() {
+		return gridPath;
+	}
 
-	void FindPath(Vector3 startPos, Vector3 targetPos) {
+    void FindPath(Vector3 startPos, Vector3 targetPos) {
 		GridNode startNode = grid.NodeFromWorldPoint(startPos);
 		GridNode targetNode = grid.NodeFromWorldPoint(targetPos);
 
@@ -42,7 +43,7 @@ public class Pathfinding : MonoBehaviour {
 			closedSet.Add(node);
 
 			if (node == targetNode) {
-				RetracePath(startNode,targetNode);
+                RetracePath(startNode,targetNode);
 				return;
 			}
 
@@ -73,11 +74,9 @@ public class Pathfinding : MonoBehaviour {
 			currentNode = currentNode.parent;
 		}
 		path.Reverse();
-
+        
 		grid.path = path;
-
-        Debug.Log(path);
-
+        gridPath = path;
 	}
 
 	int GetDistance(GridNode nodeA, GridNode nodeB) {

@@ -19,7 +19,6 @@ public class CheckBaseWalls : Node
 
     public override NodeState Evaluate()
     {
-
         object t = GetData("allyBaseWall");
 
         if (t == null)

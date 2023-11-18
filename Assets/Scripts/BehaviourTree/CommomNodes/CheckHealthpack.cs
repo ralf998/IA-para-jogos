@@ -19,6 +19,7 @@ public class CheckHealthpack : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("wtf pfr");
         object t = GetData("healthPack");
         if (t == null)
         {
