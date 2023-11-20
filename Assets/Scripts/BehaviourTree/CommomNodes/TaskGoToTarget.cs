@@ -18,7 +18,6 @@ public class TaskGoToTarget : Node
 
     public override NodeState Evaluate()
     {
-        Debug.Log("PQP3");
         Transform target = (Transform)GetData("target");
 
         _aStar.seeker = _transform;
@@ -35,5 +34,4 @@ public class TaskGoToTarget : Node
         state = NodeState.RUNNING;
         return state;
     }
-
 }

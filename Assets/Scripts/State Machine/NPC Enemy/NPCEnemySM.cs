@@ -13,11 +13,12 @@ public class NPCEnemySM : StateMachine {
     public Fallen fallenState;
 
     public List<GameObject> targets;
-    public GameObject curTarget;
+    //public GameObject curTarget;
 
     //public Rigidbody2D rigidBody;
     public Rigidbody rigidBody;
     public Transform tf;
+    public Pathfinding aStar;
     public float speed = 0.5f;
     public float life = 30;
     public float damage = 5;
@@ -30,6 +31,7 @@ public class NPCEnemySM : StateMachine {
     }
 
     protected override BaseState GetInitialState() {
+        aStar = GetComponent<Pathfinding>();
         targets.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         tf = GetComponent<Transform>();
         chasingState.FindCurrentTarget();
@@ -43,7 +45,8 @@ public class NPCEnemySM : StateMachine {
             } else if(collisionInfo.gameObject.GetComponent<AllyBT>() != null) {
                 life -= collisionInfo.gameObject.GetComponent<AllyBT>().damage;
             }
-            rigidBody.velocity = new Vector3(0,0,0);
+            //rigidBody.velocity = new Vector3(0,0,0);
+            rigidBody.velocity = 2*speed*(tf.position -collisionInfo.gameObject.transform.position).normalized;
             ChangeState(stunState);
         }
         if (collisionInfo.gameObject.tag == "AllyBaseWall") {

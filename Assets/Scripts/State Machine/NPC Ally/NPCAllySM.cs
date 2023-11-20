@@ -129,9 +129,9 @@ public class NPCAllySM : StateMachine {
     public void Die() {
         foreach (GameObject enemy in enemies) {
             enemy.GetComponent<NPCEnemySM>().targets.Remove(this.gameObject);
-            if (enemy.GetComponent<NPCEnemySM>().curTarget == this.gameObject) {
+            /*if (enemy.GetComponent<NPCEnemySM>().curTarget == this.gameObject) {
                 enemy.GetComponent<NPCEnemySM>().curTarget = null;
-            }
+            }*/
         }
         foreach (GameObject ally in allies) {
             if(ally.GetComponent<NPCAllySM>() != null) {

@@ -19,6 +19,13 @@ public class Chasing : NPCEnemy {
 
     public override void UpdatePhysics() {
         base.UpdatePhysics();
-        sm.rigidBody.velocity = sm.speed * (sm.curTarget.transform.position - sm.tf.position).normalized;
+        //sm.rigidBody.velocity = sm.speed * (sm.curTarget.transform.position - sm.tf.position).normalized;
+
+        List<GridNode> point = sm.aStar.GetPath();
+        if (Vector3.Distance(sm.tf.position, sm.aStar.target.position) > 0.01f)
+        {
+            sm.tf.position = Vector3.MoveTowards(
+                sm.tf.position, point[0].worldPosition, sm.speed * Time.deltaTime);
+        }
     }
 }

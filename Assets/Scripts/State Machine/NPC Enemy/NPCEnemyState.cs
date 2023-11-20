@@ -18,7 +18,8 @@ public class NPCEnemy : BaseState {
         if (sm.life <= 0) {
             stateMachine.ChangeState(sm.fallenState);
         } else {
-            if (sm.curTarget == null) {
+            //if (sm.curTarget == null) {
+            if (sm.aStar.target == null) {
                 stateMachine.ChangeState(sm.idleState);
             } else {
                 stateMachine.ChangeState(sm.chasingState);
@@ -58,6 +59,9 @@ public class NPCEnemy : BaseState {
                 }
             }
         }
-        sm.curTarget = inRangeTarget;
+        //sm.curTarget = inRangeTarget;
+        if (inRangeTarget != null) {
+            sm.aStar.target = inRangeTarget.transform;
+        } else {sm.aStar.target = null;}
     }
 }

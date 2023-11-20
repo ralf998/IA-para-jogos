@@ -15,7 +15,9 @@ public class Pathfinding : MonoBehaviour {
 	}
 
 	void Update() {
-		FindPath (seeker.position, target.position);
+		if (target != null) {
+			FindPath (seeker.position, target.position);
+		}
 	}
 
     public List<GridNode> GetPath() {
